@@ -5,6 +5,9 @@ import ValidateSigninInfo from '../utils/ValidateSigninInfo';
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import backgroundImage from '../assets/main-background.jpg';
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
+import { useNavigate } from 'react-router-dom';
 
 import { auth } from "../utils/firebase";
 
@@ -17,6 +20,10 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+
 
   const handleButtonClick = () => {
     const validationError = ValidateSigninInfo(email.current.value, password.current.value);
@@ -34,9 +41,15 @@ const Login = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log("User logged in:", user);
+        // console.log("User logged in:", user);
+        const {uid, email, displayName} = user;
+          dispatch(addUser({ uid, email, displayName }));
+          navigate("/browse");
+
       } else {
-        console.log("User is signed out");
+        // console.log("User is signed out");
+          dispatch(removeUser());
+          navigate("/");
       }
     });
 
