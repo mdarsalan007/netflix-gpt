@@ -1,15 +1,15 @@
-import React, { useRef, useState, useEffect } from 'react'
+import  { useRef, useState } from 'react'
 import Header from './Header';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ValidateSigninInfo from '../utils/ValidateSigninInfo';
-import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import backgroundImage from '../assets/main-background.jpg';
-import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
-import { useNavigate } from 'react-router-dom';
 
 import { auth } from "../utils/firebase";
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
+import { profilePicture } from '../utils/Constant';
 
 
 
@@ -20,9 +20,9 @@ const Login = () => {
 
   const email = useRef(null);
   const password = useRef(null);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const username = useRef(null);
 
+  const dispatch = useDispatch();
 
 
   const handleButtonClick = () => {
@@ -38,26 +38,10 @@ const Login = () => {
   };
 
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // console.log("User logged in:", user);
-        const {uid, email, displayName} = user;
-          dispatch(addUser({ uid, email, displayName }));
-          navigate("/browse");
 
-      } else {
-        // console.log("User is signed out");
-          dispatch(removeUser());
-          navigate("/");
-      }
-    });
-
-    // Clean up listener on unmount
-    return () => unsubscribe();
-  }, []);
 
   const handleSignUp = () => {
+    const nameValue = username.current.value;
     const emailValue = email.current.value;
     const passwordValue = password.current.value;
 
@@ -71,6 +55,16 @@ const Login = () => {
         const user = userCredential.user;
         console.log("User created:", user);
         // Optionally: Redirect or show success message
+
+        updateProfile(user, {
+          displayName: nameValue, photoURL: profilePicture
+            }).then(() => {
+                    const { uid, email, displayName, photoURL } = auth.currentUser;
+                    dispatch(addUser({ uid, email, displayName, photoURL }));
+            }).catch((error) => {
+                        // An error occurred
+                        // ...
+          });
       })
       .catch((error) => {
         console.error(error.code, error.message);
@@ -119,7 +113,7 @@ const Login = () => {
         <form onSubmit={(e) => { e.preventDefault() }} className='mx-auto  w-4/12 bg-black/80 pt-10 rounded-sm'>
           <div className='mx-auto  w-3/4 '>
             <h1 className='text-white text-4xl font-bold mb-6'>{signin ? "Sign In" : "Sign up"}</h1>
-            {!signin && <input className=' text-white bg-gray-400/40 w-full mx-auto h-12 px-2 my-4 rounded-sm outline-1' type="text" placeholder='Enter your full name' />}
+            {!signin && <input ref={username} className=' text-white bg-gray-400/40 w-full mx-auto h-12 px-2 my-4 rounded-sm outline-1' type="text" placeholder='Enter your full name' />}
             <input ref={email} className=' text-white bg-gray-400/40 w-full mx-auto h-12 px-2 my-4 rounded-sm outline-1' type="text" placeholder='Email or mobile number' />
             <input ref={password} className=' text-white bg-gray-400/40 w-full mx-auto h-12 px-2 my-4 rounded-sm outline-1' type="password" placeholder='Password' />
             {/* error message */}
