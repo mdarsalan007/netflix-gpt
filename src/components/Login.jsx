@@ -53,7 +53,6 @@ const Login = () => {
     createUserWithEmailAndPassword(auth, emailValue, passwordValue)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("User created:", user);
         // Optionally: Redirect or show success message
 
         updateProfile(user, {
@@ -85,7 +84,6 @@ const Login = () => {
     signInWithEmailAndPassword(auth, emailValue, passwordValue)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log("User signed in:", user);
       })
       .catch((error) => {
         console.error(error.code, error.message);
