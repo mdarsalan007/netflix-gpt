@@ -7,15 +7,15 @@ import useNowPlayingMovies from '../hooks/useNowPlayingMovies'
 import usePopularMovies from '../hooks/usepopularMovies';
 import useTopRatedMovies from '../hooks/useTopRatedMovies';
 import useUpComingMovies from '../hooks/useUpComingMovies';
-import GptSearch from './GptSearch';
+import GptSearchPage from './GptSearchPage';
 import Header from './Header'
 import MainContainer from './MainContainer';
 import SecondaryContainer from './SecondaryContainer';
 
 const Browse = () => {
 
-  const gptSearch = useSelector((store) => store.gpt.showGptSearch);
-  console.log("GPT search state:", gptSearch);
+  const gptSearchPage = useSelector((store) => store.gpt.showGptSearch);
+  console.log("GPT searchPage state:", gptSearchPage);
 
   useNowPlayingMovies();
   usePopularMovies();
@@ -27,15 +27,18 @@ const Browse = () => {
   useComedyMovies();
 
   return (
-    <div >
+    <div className='overflow-hidden'>
       <Header />
-      {
-        gptSearch ? <GptSearch /> : (<>
+      <div>
+          {
+        gptSearchPage ? <GptSearchPage /> : (<>
 
           <MainContainer />
           <SecondaryContainer />
         </>)
       }
+      </div>
+      
 
     </div>
   )
