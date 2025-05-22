@@ -3,7 +3,8 @@ import logo from "../assets/Logo-1.png"
 import {signOut } from 'firebase/auth'
 import { auth } from "../utils/firebase"
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { toggleGptSearchView } from "../utils/GptSlice"
 
 
 const Header = () => {
@@ -11,8 +12,13 @@ const Header = () => {
 
   const navigate = useNavigate();
   const user = useSelector((store)=>store.user)
+  const dispatch = useDispatch();
 
-
+  const handleGptSearchClick = ()=>{
+    // toggle gpt search
+     console.log("GPT Search Clicked");
+    dispatch(toggleGptSearchView());
+  }
 
   const handleSignOut = () => { 
     signOut(auth).then(() => {
@@ -28,6 +34,10 @@ const Header = () => {
     <div className="absolute w-full   z-10 h-20 flex items-center justify-between px-6" >
       <img className=' w-40' src={logo} />
       {user && <div className="flex items-center">
+        <div>
+          <button className="text-white  h-8 font-semibold mx-0.5 py-0.5 px-1 rounded-sm bg-cyan-500 hover:bg- hover:bg-cyan-700 transition duration-300 cursor-pointer"
+          onClick={handleGptSearchClick}>GPT Search</button>
+        </div>
         <div>
           <img className="h-12 rounded-[50%] mx-1 px-1" src={user.photoURL} alt="" />
         </div>
