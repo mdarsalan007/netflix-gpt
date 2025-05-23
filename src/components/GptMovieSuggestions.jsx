@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 
 const GptMovieSuggestions = () => {
 
-  const searchmovies = useSelector((store)=> store.searchedMOvies);
+  const searchmovies = useSelector((store) => store.searchedMOvies);
   return (
     <div className=''>
-    <div className=''>
-      <SearchedMovieList movies={searchmovies?.foundMovies} />
-    </div>
+      <div className=''>
+        <SearchedMovieList movies={searchmovies?.foundMovies} />
+      </div>
     </div>
   )
 }

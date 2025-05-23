@@ -1,12 +1,14 @@
 // https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&with_genres=12&sort_by=vote_average.desc&vote_count.gte=100
 
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addAdventureMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 import { API_KEY, API_OPTIONS } from "../utils/Constant";
 
 const useAdventureMovies = ()=>{
+
+    const adventureMovies = useSelector((store)=>store.movies.adventureMovies);
 
 
     const dispatch = useDispatch();
@@ -20,7 +22,7 @@ const useAdventureMovies = ()=>{
   }
   
   useEffect(()=>{
-    getAdventureMovies();
+    adventureMovies.length==0 && getAdventureMovies();
   },[])
 }
 

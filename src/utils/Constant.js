@@ -4,13 +4,13 @@ export const API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwYjJkYjBmNTYwZTUwNmJiMzMwYzBmNjA4MmFhZGIxMCIsIm5iZiI6MTc0NzczNDQwOS4xMzkwMDAyLCJzdWIiOiI2ODJjNGY4OTdjOGMwNDY4N2U2NDkzMWYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.8P-_WOYviY8AtjWpJPEbLgXR-mR_nzRIcHL43QhyV6A'
+    Authorization: 'Bearer '+import.meta.env.VITE_APP_TMDB_KEY,
   }
 };
 
 export const IMG_CDN_URL = 'https://image.tmdb.org/t/p/w500/';
 
-export const API_KEY =  '0b2db0f560e506bb330c0f6082aadb10';
+export const API_KEY =  import.meta.env.VITE_APP_TMDB_API_KEY;
 
 export const SUPPRTED_LANGUAGE = [{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"},{identifier:"spanish",name:"Spanish"},{identifier:"urdu",name:"Urdu"}];
 

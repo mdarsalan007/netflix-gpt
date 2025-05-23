@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IMG_CDN_URL } from "../utils/Constant";
 import ShimmerCard1 from "./ShimmerCard1";
 
-const SearchedMovieCard = ({ posterPath, title, lang, description, date }) => {
+const SearchedMovieCard = ({ posterPath, title, lang, description, date, rating }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   return (
     <div className="flex flex-shrink-0 mx-3 my-2">
@@ -14,9 +14,8 @@ const SearchedMovieCard = ({ posterPath, title, lang, description, date }) => {
             {!imgLoaded && <ShimmerCard1 />}
 
             <img
-              className={`w-40 h-60 rounded-l-md absolute top-0 left-0 transition-opacity duration-300 ${
-                imgLoaded ? "opacity-100" : "opacity-0"
-              }`}
+              className={`w-40 h-60 rounded-l-md absolute top-0 left-0 transition-opacity duration-300 ${imgLoaded ? "opacity-100" : "opacity-0"
+                }`}
               src={IMG_CDN_URL + posterPath}
               alt="movie poster"
               onLoad={() => setImgLoaded(true)}
@@ -24,7 +23,7 @@ const SearchedMovieCard = ({ posterPath, title, lang, description, date }) => {
           </>
         )}
       </div>
-      <div className=" w-52 h-60 bg-blue-50 py-0.5  px-1 rounded-r-md">
+      <div className=" w-52 h-60 bg-yellow-50 py-0.5  px-1 rounded-r-md">
         <h4
           className="text-lg font-bold overflow-hidden"
           style={{ maxHeight: "56px" }}
@@ -32,9 +31,9 @@ const SearchedMovieCard = ({ posterPath, title, lang, description, date }) => {
           {title}
         </h4>
         <p className=" font-medium">
-          {lang} - {date.split("-")[0]}
+          {lang} - {date&&date.split("-")[0]} - ({(rating) ? (Number(rating).toFixed(1) + "/10") : ("Not Rated")})
         </p>
-        <p className=" text-sm text-gray-900 font-medium leading-snug overflow-hidden h-[152px]">
+        <p className=" text-sm   leading-snug overflow-hidden h-[152px]">
           {" "}
           {description}
         </p>
