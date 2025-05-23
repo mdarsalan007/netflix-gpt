@@ -25,9 +25,9 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <>
+    <div className="relative overflow-hidden">
       <Outlet /> {/* this will render nested route components */}
-    </>
+    </div>
   )
 }
 

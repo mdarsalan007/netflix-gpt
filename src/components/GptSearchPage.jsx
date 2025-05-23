@@ -5,9 +5,9 @@ import backgroundImage from '../assets/main-background.jpg';
 
 const GptSearchPage = () => {
   return (
-    <div className=''>
-      <div className='absolute top-0 -z-10'>
-              <img className='brightness-60 ' src = {backgroundImage} />
+    <div className='min-h-screen'>
+      <div className='absolute inset-0 -z-10'>
+              <img className='brightness-60  w-full min-h-full object-cover' src = {backgroundImage} />
       </div>
       <GptSearchBar/>
       <GptMovieSuggestions/>

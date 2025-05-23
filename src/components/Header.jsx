@@ -40,7 +40,9 @@ const Header = () => {
 
   }
   return (
-    <div className="absolute w-full   z-10 h-20 flex items-center justify-between px-6" >
+    <div className="relative">
+
+      <div className="absolute w-full   z-10 h-20 flex items-center justify-between px-6" >
       <img className=' w-40' src={logo} />
       {user && <div className="flex items-center">
         {showGptSearch && <select onChange={handleLanguageChange} className="text-white  h-8 font-semibold mx-2 py-0.5 px-1 rounded-sm bg-cyan-400 hover:bg- hover:bg-cyan-300 transition duration-300 cursor-pointer gap-1">
@@ -53,7 +55,7 @@ const Header = () => {
         </select>}
         <div>
           <button className="text-white  h-8 font-semibold mx-0.5 py-0.5 px-1 rounded-sm bg-cyan-400 hover:bg- hover:bg-cyan-300 transition duration-300 cursor-pointer"
-          onClick={handleGptSearchClick}>{showGptSearch?"Home Page":"GPT Search"}</button>
+          onClick={handleGptSearchClick}>{showGptSearch?"Home Page":"Movie Search"}</button>
         </div>
         <div>
           <img className="h-12 rounded-[50%] mx-1 px-1" src={user.photoURL} alt="" />
@@ -66,6 +68,9 @@ const Header = () => {
       }
 
     </div>
+
+    </div>
+    
   )
 }
 

@@ -1,11 +1,14 @@
 import React from 'react'
 import SearchedMovieList from './SearchedMovieList'
+import { useSelector } from 'react-redux'
 
 const GptMovieSuggestions = () => {
+
+  const searchmovies = useSelector((store)=> store.searchedMOvies);
   return (
-    <div className='bg-gray-800'>
-    <div className='-mt-64 z-10 relative text-white'>
-      <SearchedMovieList/>
+    <div className=''>
+    <div className=''>
+      <SearchedMovieList movies={searchmovies?.foundMovies} />
     </div>
     </div>
   )

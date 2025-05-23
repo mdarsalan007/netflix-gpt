@@ -99,14 +99,14 @@ const Login = () => {
   }
 
   return (
-    <div className=''>
+    <div className='overflow-hidden'>
 
       <Header />
-      <div className=''>
-        <img className='brightness-60  min-h-[1000px]' src = {backgroundImage} />
+      <div className='absolute  inset-0 -z-10'>
+        <img className='brightness-60  min-h-full' src = {backgroundImage} />
       </div>
 
-      <div className=" absolute top-28 w-full  " >
+      <div className="  mt-28 mb-8 w-full  " >
 
         <form onSubmit={(e) => { e.preventDefault() }} className='mx-auto  w-4/12 bg-black/80 pt-10 rounded-sm'>
           <div className='mx-auto  w-3/4 '>
