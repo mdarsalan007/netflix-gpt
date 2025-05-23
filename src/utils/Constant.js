@@ -12,7 +12,9 @@ export const IMG_CDN_URL = 'https://image.tmdb.org/t/p/w500/';
 
 export const API_KEY =  '0b2db0f560e506bb330c0f6082aadb10';
 
-export const SUPPRTED_LANGUAGE = [{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"},{identifier:"spanish",name:"Spanish"},{identifier:"urdu",name:"Urdu"}]
+export const SUPPRTED_LANGUAGE = [{identifier:"en",name:"English"},{identifier:"hindi",name:"Hindi"},{identifier:"spanish",name:"Spanish"},{identifier:"urdu",name:"Urdu"}];
+
+
 
 
 
