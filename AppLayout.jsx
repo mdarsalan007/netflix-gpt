@@ -1,7 +1,7 @@
-import { Outlet, useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import { auth } from "./src/utils/firebase";
 import { addUser, removeUser } from "./src/utils/userSlice";
 
@@ -28,7 +28,7 @@ const AppLayout = () => {
     <div className="relative overflow-hidden">
       <Outlet /> {/* this will render nested route components */}
     </div>
-  )
-}
+  );
+};
 
 export default AppLayout;

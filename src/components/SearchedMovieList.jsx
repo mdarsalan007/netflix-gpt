@@ -4,7 +4,7 @@ import SearchedMovieCard from "./SearchedMovieCard";
 const SearchedMovieList = ({ movies }) => {
   return (
     <div className="flex justify-center mb-10">
-      <div className="flex flex-wrap w-[100%] justify-center ">
+      <div className="flex flex-wrap gap-2 w-[100%] justify-center ">
         {movies?.map((movie) => {
           const {
             id,
@@ -14,7 +14,7 @@ const SearchedMovieList = ({ movies }) => {
             title,
             release_date,
             vote_average,
-            backdrop_path
+            backdrop_path,
           } = movie;
           return (
             <SearchedMovieCard
